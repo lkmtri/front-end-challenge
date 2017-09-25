@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Card from './Card'
+import AsyncList from './AsyncList'
 
 const UserInfo = ({ title, content }) => (
   <div className="user-info">
@@ -33,12 +34,13 @@ UserInfo.propTypes = {
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 }
 
-const URL = ({ href }) => (
+const URL = ({ href, text }) => (
   <a href={href}>
-    {href}
+    {text !== '' ? text : href}
     <style jsx>{`
       a {
         color: #39cccc;
+        display: block;
       }
     `}</style>
   </a>
@@ -46,6 +48,11 @@ const URL = ({ href }) => (
 
 URL.propTypes = {
   href: PropTypes.string.isRequired,
+  text: PropTypes.string,
+}
+
+URL.defaultProps = {
+  text: '',
 }
 
 const UserDetails = ({
@@ -77,13 +84,37 @@ const UserDetails = ({
         <UserInfo title="gravatarId" content={gravatarId} />
         <UserInfo title="url" content={<URL href={url} />} />
         <UserInfo title="htmlUrl" content={<URL href={htmlUrl} />} />
-        <UserInfo title="followersUrl" content={<URL href={followersUrl} />} />
-        <UserInfo title="followingUrl" content={<URL href={followingUrl} />} />
+        <UserInfo
+          title="followers"
+          content={
+            <AsyncList
+              url={followersUrl}
+              processData={data => data.map(item => <URL href={item.htmlUrl} text={item.login} />)}
+            />
+          }
+        />
+        <UserInfo
+          title="following"
+          content={
+            <AsyncList
+              url={`/users/${login}/following`}
+              processData={data => data.map(item => <URL href={item.htmlUrl} text={item.login} />)}
+            />
+          }
+        />
         <UserInfo title="gistsUrl" content={<URL href={gistsUrl} />} />
         <UserInfo title="starredUrl" content={<URL href={starredUrl} />} />
         <UserInfo title="subscriptionsUrl" content={<URL href={subscriptionsUrl} />} />
         <UserInfo title="organizationsUrl" content={<URL href={organizationsUrl} />} />
-        <UserInfo title="reposUrl" content={<URL href={reposUrl} />} />
+        <UserInfo
+          title="repos"
+          content={
+            <AsyncList
+              url={reposUrl}
+              processData={data => data.map(item => <URL href={item.htmlUrl} text={item.name} />)}
+            />
+          }
+        />
         <UserInfo title="eventsUrl" content={<URL href={eventsUrl} />} />
         <UserInfo title="receveiedEventsUrl" content={<URL href={receveiedEventsUrl} />} />
         <UserInfo title="type" content={type} />
