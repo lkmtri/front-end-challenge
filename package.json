@@ -5,9 +5,9 @@
   "author": "lkmtri",
   "license": "MIT",
   "scripts": {
-    "dev": "next -p 3009",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start -p 3009"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
