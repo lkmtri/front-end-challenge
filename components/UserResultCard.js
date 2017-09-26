@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
+import Router from 'next/router'
 import { getUserFollowersCount, getUserFollowingCount } from 'store/actions/search'
 import Card from './Card'
 
@@ -25,63 +25,62 @@ class UserResultCard extends Component {
     this.props.getUserFollowingCount(this.props.login)
   }
 
+  goToUserDetailsPage = () =>
+    Router.push(`/user?id=${this.props.login}`, `/user/${this.props.login}`)
+
   render() {
     return (
-      <Link href={`/user?id=${this.props.login}`}>
-        <a>
-          <Card style={{ height: '100px', padding: '0px' }} withHover>
-            <div
-              className="user-card__avatar"
-              style={{ backgroundImage: `url('${this.props.avatarUrl}')` }}
-            />
-            <div className="user-card__info">
-              <div className="user-card__username">{this.props.login}</div>
-              <div className="user-card__social">
-                <div className="user-card__social__item">
-                  {`Followers ${this.props.followerCount !== -1 ? this.props.followerCount : '-'}`}
-                </div>
-                <div className="user-card__social__item">
-                  {`Following ${this.props.followingCount !== -1
-                    ? this.props.followingCount
-                    : '-'}`}
-                </div>
+      <div role="button" tabIndex="0" onClick={this.goToUserDetailsPage}>
+        <Card style={{ height: '100px', padding: '0px' }} withHover>
+          <div
+            className="user-card__avatar"
+            style={{ backgroundImage: `url('${this.props.avatarUrl}')` }}
+          />
+          <div className="user-card__info">
+            <div className="user-card__username">{this.props.login}</div>
+            <div className="user-card__social">
+              <div className="user-card__social__item">
+                {`Followers ${this.props.followerCount !== -1 ? this.props.followerCount : '-'}`}
+              </div>
+              <div className="user-card__social__item">
+                {`Following ${this.props.followingCount !== -1 ? this.props.followingCount : '-'}`}
               </div>
             </div>
-          </Card>
-          <style jsx>{`
-            .user-card__avatar {
-              width: 100px;
-              height: 100px;
-              float: left;
-              background-position: center;
-              background-size: cover;
-              background-repeat: no-repeat;
-            }
-            .user-card__info {
-              width: 334px;
-              max-width: calc(100vw - 116px);
-              padding: 16px;
-              float: left;
-            }
-            .user-card__username {
-              font-size: 20px;
-              line-height: 150%;
-              letter-spacing: 2px;
-              overflow: hidden;
-            }
-            .user-card__social {
-              padding-top: 5px;
-              font-size: 12px;
-              line-height: 140%;
-              color: #586069;
-            }
-            .user-card__social__item {
-              height: 16px;
-              overflow: hidden;
-            }
-          `}</style>
-        </a>
-      </Link>
+          </div>
+        </Card>
+        <style jsx>{`
+          .user-card__avatar {
+            width: 100px;
+            height: 100px;
+            float: left;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+          .user-card__info {
+            width: 334px;
+            max-width: calc(100vw - 116px);
+            padding: 16px;
+            float: left;
+          }
+          .user-card__username {
+            font-size: 20px;
+            line-height: 150%;
+            letter-spacing: 2px;
+            overflow: hidden;
+          }
+          .user-card__social {
+            padding-top: 5px;
+            font-size: 12px;
+            line-height: 140%;
+            color: #586069;
+          }
+          .user-card__social__item {
+            height: 16px;
+            overflow: hidden;
+          }
+        `}</style>
+      </div>
     )
   }
 }

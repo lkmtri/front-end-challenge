@@ -48,13 +48,13 @@ app.prepare().then(() => {
     renderAndCache(req, res, '/')
   })
 
-  server.get('/search', (req, res) => {
-    const queryParams = { q: req.query.q }
+  server.get('/search/:searchString', (req, res) => {
+    const queryParams = { q: req.params.searchString }
     renderAndCache(req, res, '/search', queryParams)
   })
 
-  server.get('/user', (req, res) => {
-    const queryParams = { id: req.query.id }
+  server.get('/user/:userId', (req, res) => {
+    const queryParams = { id: req.params.userId }
     renderAndCache(req, res, '/user', queryParams)
   })
 

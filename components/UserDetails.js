@@ -63,7 +63,6 @@ const UserDetails = ({
   url,
   htmlUrl,
   followersUrl,
-  followingUrl,
   gistsUrl,
   starredUrl,
   subscriptionsUrl,
@@ -124,7 +123,6 @@ const UserDetails = ({
     ) : (
       <Card>Error loading user details. Try again in a few moment.</Card>
     )}
-
     <style jsx>{`
       div {
         padding-top: 72px;
@@ -141,7 +139,6 @@ UserDetails.propTypes = {
   url: PropTypes.string,
   htmlUrl: PropTypes.string,
   followersUrl: PropTypes.string,
-  followingUrl: PropTypes.string,
   gistsUrl: PropTypes.string,
   starredUrl: PropTypes.string,
   subscriptionsUrl: PropTypes.string,
@@ -162,7 +159,6 @@ UserDetails.defaultProps = {
   url: '',
   htmlUrl: '',
   followersUrl: '',
-  followingUrl: '',
   gistsUrl: '',
   starredUrl: '',
   subscriptionsUrl: '',

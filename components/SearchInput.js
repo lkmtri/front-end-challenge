@@ -8,6 +8,13 @@ import Card from './Card'
 import Spinner from './Spinner'
 
 class SearchInput extends Component {
+  static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    searchString: PropTypes.string.isRequired,
+    searchUser: PropTypes.func.isRequired,
+    updateSearchString: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     if (this.props.searchString === '') this.searchInput.focus()
   }
@@ -21,12 +28,7 @@ class SearchInput extends Component {
 
   searchUser = _.debounce(() => {
     if (this.props.searchString !== '') {
-      Router.push({
-        pathname: '/search',
-        query: {
-          q: this.props.searchString,
-        },
-      })
+      Router.push(`/search?q=${this.props.searchString}`, `/search/${this.props.searchString}`)
       this.props.searchUser(this.props.searchString)
     }
   }, 500)
@@ -68,13 +70,6 @@ class SearchInput extends Component {
       </div>
     )
   }
-}
-
-SearchInput.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  searchString: PropTypes.string.isRequired,
-  searchUser: PropTypes.func.isRequired,
-  updateSearchString: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ searchState: { loading, searchString } }) => ({ loading, searchString })
