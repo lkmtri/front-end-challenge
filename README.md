@@ -8,6 +8,8 @@ Technology stack:
 - State management framework: redux
 - Built-in CSS-in-JS by next.js
 
+Live demo: https://oddle-bsjgwwbtxd.now.sh
+
 [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/lkmtri/oddle-front-end-challenge)
 
 # Installation
