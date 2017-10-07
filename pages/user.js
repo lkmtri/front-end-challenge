@@ -1,15 +1,13 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import withRedux from 'next-redux-wrapper'
-import createStore from 'store'
-import Layout from 'components/Layout'
-import SearchInput from 'components/SearchInput'
-import UserDetails from 'components/UserDetails'
-import { getUserDetails } from 'store/actions/search'
+import withStore from 'store'
+import { PageLayout } from 'components'
+import { SearchInput, UserDetails } from 'containers'
+import { getUserDetails } from 'store/actions'
 
 class UserPage extends Component {
   static async getInitialProps({ query: { id }, store }) {
-    if (!store.getState().usersById[id]) {
+    if (!store.getState().users.byId[id]) {
       await getUserDetails(id)(store.dispatch)
     }
     return {
@@ -23,12 +21,12 @@ class UserPage extends Component {
 
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <SearchInput />
         <UserDetails username={this.props.username} />
-      </Layout>
+      </PageLayout>
     )
   }
 }
 
-export default withRedux(createStore)(UserPage)
+export default withStore(UserPage)

@@ -1,9 +1,10 @@
+import withRedux from 'next-redux-wrapper'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
-import searchReducer from './reducers/search'
+import reducers from './reducers'
 
-const exampleInitialState = {
+const initialAppState = {
   searchState: {
     searchString: '',
     loading: false,
@@ -11,11 +12,15 @@ const exampleInitialState = {
     nextPageLoading: false,
     hasNextPage: false,
   },
-  usersById: {},
-  usersAllId: [],
+  users: {
+    byId: {},
+    allIds: [],
+  },
 }
 
 const reduxMiddleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
-export default (initialState = exampleInitialState) =>
-  createStore(searchReducer, initialState, reduxMiddleware)
+export default wrappedComponent =>
+  withRedux((initialState = initialAppState) =>
+    createStore(reducers, initialState, reduxMiddleware),
+  )(wrappedComponent)

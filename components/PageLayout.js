@@ -24,9 +24,6 @@ const PageLayout = ({ children, title }) => (
         box-sizing: border-box;
         font-weight: 200;
       }
-      div[role='button']:hover {
-        cursor: pointer;
-      }
       div[role='button']:focus {
         outline: none;
       }

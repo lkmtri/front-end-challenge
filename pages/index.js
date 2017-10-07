@@ -1,14 +1,12 @@
-import withRedux from 'next-redux-wrapper'
-import createStore from 'store'
-import Layout from 'components/Layout'
-import SearchInput from 'components/SearchInput'
-import SearchResults from 'components/SearchResults'
+import withStore from 'store'
+import { PageLayout } from 'components'
+import { SearchInput, SearchResults } from 'containers'
 
 const Page = () => (
-  <Layout>
+  <PageLayout>
     <SearchInput />
     <SearchResults />
-  </Layout>
+  </PageLayout>
 )
 
-export default withRedux(createStore)(Page)
+export default withStore(Page)

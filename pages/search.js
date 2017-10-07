@@ -1,10 +1,8 @@
 import { Component } from 'react'
-import withRedux from 'next-redux-wrapper'
-import createStore from 'store'
-import Layout from 'components/Layout'
-import SearchInput from 'components/SearchInput'
-import SearchResults from 'components/SearchResults'
-import { searchUser, updateSearchString } from 'store/actions/search'
+import withStore from 'store'
+import { PageLayout } from 'components'
+import { SearchInput, SearchResults } from 'containers'
+import { searchUser, updateSearchString } from 'store/actions'
 
 class Search extends Component {
   static async getInitialProps({ query: { q }, store, isServer }) {
@@ -17,12 +15,12 @@ class Search extends Component {
 
   render() {
     return (
-      <Layout>
+      <PageLayout>
         <SearchInput />
         <SearchResults />
-      </Layout>
+      </PageLayout>
     )
   }
 }
 
-export default withRedux(createStore)(Search)
+export default withStore(Search)

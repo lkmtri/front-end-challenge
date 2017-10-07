@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import _ from 'lodash'
-import { updateSearchString, searchUser } from 'actions/search'
-import Card from './Card'
-import Spinner from './Spinner'
+import { updateSearchString, searchUser } from 'store/actions'
+import { Card, Spinner } from 'components'
 
 class SearchInput extends Component {
   static propTypes = {

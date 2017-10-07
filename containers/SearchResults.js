@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { loadNextSearchResults } from 'actions/search'
+import { loadNextSearchResults } from 'store/actions'
+import { Button, Spinner } from 'components'
 import UserResultCard from './UserResultCard'
-import Button from './Button'
-import Spinner from './Spinner'
 
 const loadMoreSpinnerPresets = {
   position: 'relative',
@@ -41,8 +40,8 @@ SearchResults.propTypes = {
   hasNextPage: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = ({ searchState: { nextPageLoading, hasNextPage }, usersAllId }) => ({
-  users: usersAllId,
+const mapStateToProps = ({ searchState: { nextPageLoading, hasNextPage }, users: { allIds } }) => ({
+  users: allIds,
   loading: nextPageLoading,
   hasNextPage,
 })

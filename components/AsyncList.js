@@ -8,11 +8,8 @@ class AsyncList extends Component {
     processData: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      listToRender: [],
-    }
+  state = {
+    listToRender: [],
   }
 
   componentDidMount() {
