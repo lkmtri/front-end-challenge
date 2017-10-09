@@ -24,7 +24,8 @@ const Card = ({ children, withHover, style }) => (
 )
 
 Card.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
+    .isRequired,
   withHover: PropTypes.bool,
   style: PropTypes.object,
 }

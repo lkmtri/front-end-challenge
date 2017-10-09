@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Router from 'next/router'
 import _ from 'lodash'
 import { updateSearchString, searchUser } from 'store/actions'
-import { Card, Spinner } from 'components'
+import { Card, Input, Spinner } from 'components'
 
 class SearchInput extends Component {
   static propTypes = {
@@ -36,12 +36,10 @@ class SearchInput extends Component {
     return (
       <div>
         <Card style={{ padding: '0px', margin: '0px' }}>
-          <input
-            type="text"
-            value={this.props.searchString}
-            placeholder="Type to search"
+          <Input
+            searchString={this.props.searchString}
             onChange={this.handleChange}
-            ref={(input) => {
+            getRef={(input) => {
               this.searchInput = input
             }}
           />
@@ -54,16 +52,6 @@ class SearchInput extends Component {
             transform: translateX(-50%);
             padding: 8px;
             background-color: #f5f5f5;
-          }
-          input {
-            padding: 16px 55px 16px 16px;
-            width: 100%;
-            height: 54px;
-            font-size: 20px;
-            border: none;
-          }
-          input:focus {
-            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.05);
           }
         `}</style>
       </div>

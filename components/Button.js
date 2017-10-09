@@ -27,13 +27,17 @@ const Button = ({ onClick, disabled, children }) => (
 Button.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.string,
+  ]),
 }
 
 Button.defaultProps = {
   onClick: () => {},
   disabled: false,
-  children: '',
+  children: null,
 }
 
 export default Button
