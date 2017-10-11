@@ -13,6 +13,14 @@ class AsyncList extends Component {
   }
 
   componentDidMount() {
+    this.fetchData()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.url !== this.props.url) this.fetchData()
+  }
+
+  fetchData = () => {
     fetch.get(this.props.url).then(({ data }) => {
       this.setState({
         listToRender: this.props.processData(data),
@@ -21,7 +29,7 @@ class AsyncList extends Component {
   }
 
   render() {
-    return <div>{this.state.listToRender.map(item => item)}</div>
+    return <div>{this.state.listToRender}</div>
   }
 }
 

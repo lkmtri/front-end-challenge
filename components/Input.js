@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 
-const Input = ({ searchString, onChange, getRef, placeholder, type }) => (
+const Input = ({ value, onChange, getRef, placeholder, type }) => (
   <div>
     <input
       type={type}
-      value={searchString}
+      value={value}
       placeholder={placeholder}
       onChange={onChange}
       ref={input => getRef(input)}
@@ -27,7 +27,7 @@ const Input = ({ searchString, onChange, getRef, placeholder, type }) => (
 Input.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  searchString: PropTypes.string,
+  value: PropTypes.string,
   onChange: PropTypes.func,
   getRef: PropTypes.func,
 }
@@ -35,7 +35,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   placeholder: '',
-  searchString: '',
+  value: '',
   onChange: () => {},
   getRef: () => {},
 }

@@ -37,7 +37,7 @@ class SearchInput extends Component {
       <div>
         <Card style={{ padding: '0px', margin: '0px' }}>
           <Input
-            searchString={this.props.searchString}
+            value={this.props.searchString}
             onChange={this.handleChange}
             getRef={(input) => {
               this.searchInput = input
