@@ -10,7 +10,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "express": "^4.15.5",
     "lodash": "^4.17.4",
     "lru-cache": "^4.1.1",
